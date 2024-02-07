@@ -21,8 +21,13 @@ namespace TalentLMS.Api
         [Post("/addusertocourse")]
         Task<ApiResponse<List<UserCourse>>> AddUserToCourse([Body] UserCourse data);
 
+<<<<<<< HEAD
         [Get("/addusertobranch?userId={userId}&branchId={branchId}")]
         Task<ApiResponse<List<UserBranch>>> AddUserTobranch(string userId, string branchId);
+=======
+        [Get("/addusertobranch/user_id:{user_id},branch_id:{branch_id}")]
+        Task<ApiResponse<List<UserBranch>>> AddUserTobranch(string user_id, string branch_id);
+>>>>>>> origin/feature/302-assign-branch-adding-user
     }
 
     namespace Courses
@@ -115,7 +120,7 @@ namespace TalentLMS.Api
                 string CompletedOnTimestamp,
                 string Score,
                 string TotalTime);
-           
+
         }
     }
 }
