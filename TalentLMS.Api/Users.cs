@@ -21,7 +21,7 @@ namespace TalentLMS.Api
         [Post("/usersignup")]
         Task<ApiResponse<Users.BasicUser>> UserSignup([Body] Users.NewUser data);
 
-        [Get("/addusertobranch?user_id={userId},branch_id={branchId}")]
+        [Get("/addusertobranch?user_id={userId}&&branch_id={branchId}")]
         Task<ApiResponse<UserBranch>> AddUserToBranch(string userId, string branchId);
     }
 
