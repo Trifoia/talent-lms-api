@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -9,10 +9,10 @@ namespace TalentLMS.Api
 {
     public partial interface ITalentApi
     {
-        [Get("/getuserstatusincourse/user_id:{userId},course_id:{courseId}")]
+        [Get("/getuserstatusincourse?user_id={userId}&course_id={courseId}")]
         Task<ApiResponse<UserCourseStatus>> UserStatus(string userId, string courseId);
 
-        [Get("/courses/id:{courseId}")]
+        [Get("/courses?id={courseId}")]
         Task<ApiResponse<Course>> Course(string courseId);
 
         [Get("/courses")]
@@ -20,6 +20,9 @@ namespace TalentLMS.Api
 
         [Post("/addusertocourse")]
         Task<ApiResponse<List<UserCourse>>> AddUserToCourse([Body] UserCourse data);
+
+        [Get("/addusertobranch/user_id:{user_id},branch_id:{branch_id}")]
+        Task<ApiResponse<List<UserBranch>>> AddUserTobranch(string user_id, string branch_id);
     }
 
     namespace Courses
@@ -84,6 +87,12 @@ namespace TalentLMS.Api
             }
         }
 
+        public record UserBranch(
+               string user_id,
+               string branch_id,
+               string branch_name
+               );
+
         public record UserCourseStatus(
             string Role,
             DateTime EnrolledOn,
@@ -106,6 +115,7 @@ namespace TalentLMS.Api
                 string CompletedOnTimestamp,
                 string Score,
                 string TotalTime);
+
         }
     }
 }
