@@ -83,7 +83,7 @@ namespace TalentLMS.Api
             List<User.Certification> Certifications,
             List<User.Badge> Badges)
         {
-            public record Branch;
+            public record Branch(string Id, string Name);
 
             public record Course(
                 string Id,
