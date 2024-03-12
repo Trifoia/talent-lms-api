@@ -13,16 +13,16 @@ namespace TalentLMS.Api
         [Get("/users")]
         Task<ApiResponse<List<Users.BasicUser>>> Users();
 
-        [Get("/users/id:{userId}")]
+        [Get("/users?id={userId}")]
         Task<ApiResponse<Users.User>> User(string userId);
 
-        [Get("/users/email:{userEmail}")]
+        [Get("/users?email={userEmail}")]
         Task<ApiResponse<Users.User>> UserByEmail(string userEmail);
 
         [Post("/usersignup")]
         Task<ApiResponse<Users.BasicUser>> UserSignup([Body] Users.NewUser data);
 
-        [Get("/addusertobranch:user_id={userId},branch_id={branchId}")]
+        [Get("/addusertobranch?user_id={userId}&branch_id={branchId}")]
         Task<ApiResponse<UserBranch>> AddUserToBranch(string userId, string branchId);
     }
 

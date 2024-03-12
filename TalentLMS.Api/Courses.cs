@@ -21,7 +21,7 @@ namespace TalentLMS.Api
         [Post("/addusertocourse")]
         Task<ApiResponse<List<UserCourse>>> AddUserToCourse([Body] UserCourse data);
 
-        [Get("/addusertobranch/user_id:{user_id},branch_id:{branch_id}")]
+        [Get("/addusertobranch?user_id={user_id}&branch_id={branch_id}")]
         Task<ApiResponse<List<UserBranch>>> AddUserTobranch(string user_id, string branch_id);
     }
 
