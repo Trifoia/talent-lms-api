@@ -24,7 +24,7 @@ namespace TalentLMS.Api
         [Get("/addusertobranch?user_id={user_id}&branch_id={branch_id}")]
         Task<ApiResponse<List<UserBranch>>> AddUserTobranch(string user_id, string branch_id);
 
-        [Get("/removeuserfromcourse?user_id={user_id}&course_id={course_id}")]
+        [Get("/removeuserfromcourse/user_id:{user_id},course_id:{course_id}")]
         Task<ApiResponse<dynamic>> RemoveUserFromCourse(string user_id, string course_id);
 
     }
