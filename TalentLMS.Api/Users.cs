@@ -31,6 +31,7 @@ namespace TalentLMS.Api
         public record NewUser(
           string first_name,
           string last_name,
+          string custom_field_state,
           string email,
           string login,
           string password
