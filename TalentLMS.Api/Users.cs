@@ -23,6 +23,9 @@ namespace TalentLMS.Api
 
         [Get("/addusertobranch?user_id={userId},branch_id={branchId}")]
         Task<ApiResponse<UserBranch>> AddUserToBranch(string userId, string branchId);
+
+        [Post("/edituser")]
+        Task<ApiResponse<Users.BasicUser>> EditUser([Body] Users.NewUser data);
     }
 
     namespace Users
