@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Refit;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Refit;
 using static TalentLMS.Api.Users.User;
 
 namespace TalentLMS.Api
@@ -26,7 +26,7 @@ namespace TalentLMS.Api
         Task<ApiResponse<UserBranch>> AddUserToBranch(string userId, string branchId);
 
         [Post("/edituser")]
-        Task<ApiResponse<Users.BasicUser>> EditUser([Body] Users.NewUser data);
+        Task<ApiResponse<Users.BasicUser>> EditUser([Body(BodySerializationMethod.UrlEncoded)] Users.EditUser data);
     }
 
     namespace Users
@@ -34,10 +34,15 @@ namespace TalentLMS.Api
         public record NewUser(
           string first_name,
           string last_name,
-          string custom_field_state,
+          string custom_field_1,
           string email,
           string login,
           string password
+        );
+
+        public record EditUser(
+            string user_id,
+            string custom_field_1
         );
 
         public record BasicUser(
