@@ -11,13 +11,13 @@ namespace TalentLMS.Api
         [Get("/getuserprogressinunits?unit_id={unitId}")]
         Task<ApiResponse<IEnumerable<UserUnitProgress>>> UserProgress(string unitId);
 
-        [Get("/getuserprogressinunits?unit_id={unitId},user_id={userId}")]
+        [Get("/getuserprogressinunits?unit_id={unitId}&user_id={userId}")]
         Task<ApiResponse<UserUnitProgress>> UserProgress(string unitId, string userId);
 
-        [Get("/gettestanswers?test_id={testId},user_id={userId}")]
+        [Get("/gettestanswers?test_id={testId}&user_id={userId}")]
         Task<ApiResponse<TestResult>> TestAnswers(string testId, string userId);
 
-        [Get("/getsurveyanswers?survey_id={surveyId},user_id={userId}")]
+        [Get("/getsurveyanswers?survey_id={surveyId}&user_id={userId}")]
         Task<ApiResponse<SurveyResult>> SurveyAnswers(string surveyId, string userId);
 
 

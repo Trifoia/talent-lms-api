@@ -6,6 +6,7 @@ using static TalentLMS.Api.Users.User;
 
 namespace TalentLMS.Api
 {
+    // linke to docs: https://market.talentlms.com/pages/docs/TalentLMS-API-Documentation.pdf
 
     public partial interface ITalentApi
     {
@@ -21,7 +22,7 @@ namespace TalentLMS.Api
         [Post("/usersignup")]
         Task<ApiResponse<Users.BasicUser>> UserSignup([Body] Users.NewUser data);
 
-        [Get("/addusertobranch?user_id={userId},branch_id={branchId}")]
+        [Get("/addusertobranch?user_id={userId}&branch_id={branchId}")]
         Task<ApiResponse<UserBranch>> AddUserToBranch(string userId, string branchId);
 
         [Post("/edituser")]
@@ -86,7 +87,7 @@ namespace TalentLMS.Api
             List<User.Certification> Certifications,
             List<User.Badge> Badges)
         {
-            public record Branch;
+            public record Branch(string Id, string Name);
 
             public record Course(
                 string Id,
