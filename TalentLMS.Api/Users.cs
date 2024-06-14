@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Refit;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Refit;
 using static TalentLMS.Api.Users.User;
 
 namespace TalentLMS.Api
 {
+    // linke to docs: https://market.talentlms.com/pages/docs/TalentLMS-API-Documentation.pdf
 
     public partial interface ITalentApi
     {
@@ -21,8 +22,11 @@ namespace TalentLMS.Api
         [Post("/usersignup")]
         Task<ApiResponse<Users.BasicUser>> UserSignup([Body] Users.NewUser data);
 
-        [Get("/addusertobranch?user_id={userId},branch_id={branchId}")]
+        [Get("/addusertobranch?user_id={userId}&branch_id={branchId}")]
         Task<ApiResponse<UserBranch>> AddUserToBranch(string userId, string branchId);
+
+        [Post("/edituser")]
+        Task<ApiResponse<Users.BasicUser>> EditUser([Body(BodySerializationMethod.UrlEncoded)] Users.EditUser data);
     }
 
     namespace Users
@@ -30,10 +34,15 @@ namespace TalentLMS.Api
         public record NewUser(
           string first_name,
           string last_name,
-          string custom_field_state,
+          string custom_field_1,
           string email,
           string login,
           string password
+        );
+
+        public record EditUser(
+            string user_id,
+            string custom_field_1
         );
 
         public record BasicUser(
@@ -83,7 +92,7 @@ namespace TalentLMS.Api
             List<User.Certification> Certifications,
             List<User.Badge> Badges)
         {
-            public record Branch;
+            public record Branch(string Id, string Name);
 
             public record Course(
                 string Id,
