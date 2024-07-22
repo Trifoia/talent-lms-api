@@ -24,7 +24,7 @@ namespace TalentLMS.Api
         //Task<ApiResponse<Users.BasicUser>> UserSignupOld([Body] Users.NewUserQA data);
 
         [Post("/usersignup")]
-        Task<ApiResponse<Users.BasicUser>> UserSignup([Body] NameValueCollection data);
+        Task<ApiResponse<Users.BasicUser>> UserSignup([Body] StringDictionary data);
 
         [Get("/addusertobranch?user_id={userId}&branch_id={branchId}")]
         Task<ApiResponse<UserBranch>> AddUserToBranch(string userId, string branchId);
