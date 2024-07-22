@@ -1,6 +1,7 @@
 ﻿using Refit;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Threading.Tasks;
 using static TalentLMS.Api.Users.User;
 
@@ -19,8 +20,11 @@ namespace TalentLMS.Api
         [Get("/users?email={userEmail}")]
         Task<ApiResponse<Users.User>> UserByEmail(string userEmail);
 
+        //[Post("/usersignup")]
+        //Task<ApiResponse<Users.BasicUser>> UserSignupOld([Body] Users.NewUserQA data);
+
         [Post("/usersignup")]
-        Task<ApiResponse<Users.BasicUser>> UserSignup([Body] Users.NewUser data);
+        Task<ApiResponse<Users.BasicUser>> UserSignup([Body] NameValueCollection data);
 
         [Get("/addusertobranch?user_id={userId}&branch_id={branchId}")]
         Task<ApiResponse<UserBranch>> AddUserToBranch(string userId, string branchId);
@@ -31,14 +35,15 @@ namespace TalentLMS.Api
 
     namespace Users
     {
-        public record NewUser(
-          string first_name,
-          string last_name,
-          string custom_field_1,
-          string email,
-          string login,
-          string password
-        );
+        //public record NewUser(
+        //  string first_name,
+        //  string last_name,
+        //  string custom_field_1, // get from config
+        //  string email,
+        //  string login,
+        //  string password
+        //);
+
 
         public record EditUser(
             string user_id,
