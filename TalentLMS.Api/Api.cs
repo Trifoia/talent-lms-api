@@ -22,8 +22,9 @@ namespace TalentLMS.Api
 
         private readonly string _talentLmsApiRoot;
         private readonly string _apiKey;
+        private readonly bool _logging;
 
-        public TalentApi(string talentLmsApiRoot, string apiKey)
+        public TalentApi(string talentLmsApiRoot, string apiKey, bool logging = false)
         {
             _talentLmsApiRoot = talentLmsApiRoot;
             _apiKey = apiKey;
@@ -32,11 +33,17 @@ namespace TalentLMS.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient(serviceProvider => new AuthHeaderHandler(_apiKey));
+            services.AddTransient<HttpLoggingHandler>();
+            var refitClient = 
             services.AddRefitClient<ITalentApi>().ConfigureHttpClient(services =>
             {
                 services.BaseAddress = new Uri(_talentLmsApiRoot);
             }).AddHttpMessageHandler<AuthHeaderHandler>();
 
+            if (_logging)
+            {
+                refitClient.AddHttpMessageHandler<HttpLoggingHandler>();
+            }
         }
     }
 
