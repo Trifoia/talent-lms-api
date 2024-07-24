@@ -28,6 +28,7 @@ namespace TalentLMS.Api
         {
             _talentLmsApiRoot = talentLmsApiRoot;
             _apiKey = apiKey;
+            _logging = logging;
         }
 
         public void ConfigureServices(IServiceCollection services)
