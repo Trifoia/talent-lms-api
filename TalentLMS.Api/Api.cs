@@ -31,7 +31,7 @@ namespace TalentLMS.Api
 
             string credentials = $"{apiKey}:"; // talent only uses api key as username without password
             byte[] bytes = Encoding.ASCII.GetBytes(credentials);
-            string _auth = Convert.ToBase64String(bytes);
+            _auth = Convert.ToBase64String(bytes);
         }
 
         public void ConfigureServices(IServiceCollection services)
