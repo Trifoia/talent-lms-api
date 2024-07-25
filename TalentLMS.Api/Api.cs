@@ -21,19 +21,22 @@ namespace TalentLMS.Api
     public class TalentApi {
 
         private readonly string _talentLmsApiRoot;
-        private readonly string _apiKey;
+        private readonly string _auth;
         private readonly bool _logging;
 
         public TalentApi(string talentLmsApiRoot, string apiKey, bool logging = false)
         {
             _talentLmsApiRoot = talentLmsApiRoot;
-            _apiKey = apiKey;
             _logging = logging;
+
+            string credentials = $"{apiKey}:"; // talent only uses api key as username without password
+            byte[] bytes = Encoding.ASCII.GetBytes(credentials);
+            string _auth = Convert.ToBase64String(bytes);
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient(serviceProvider => new AuthHeaderHandler(_apiKey));
+            services.AddTransient(serviceProvider => new AuthHeaderHandler(_auth));
             services.AddTransient<HttpLoggingHandler>();
             var refitClient = 
             services.AddRefitClient<ITalentApi>().ConfigureHttpClient(services =>
@@ -50,16 +53,17 @@ namespace TalentLMS.Api
 
     class AuthHeaderHandler : DelegatingHandler
     {
-        private readonly string _apiKey;
+        private readonly string _auth;
 
-        public AuthHeaderHandler(string apiKey)
+        public AuthHeaderHandler(string auth)
         {
-            _apiKey = apiKey;
+            _auth = auth;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            request.Headers.Authorization = new AuthenticationHeaderValue("Basic", _apiKey);
+           
+            request.Headers.Authorization = new AuthenticationHeaderValue("Basic", _auth);
 
             return await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
         }
