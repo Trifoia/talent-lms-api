@@ -30,27 +30,11 @@ namespace TalentLMS.Api
         Task<ApiResponse<UserBranch>> AddUserToBranch(string userId, string branchId);
 
         [Post("/edituser")]
-        Task<ApiResponse<Users.BasicUser>> EditUser([Body(BodySerializationMethod.UrlEncoded)] Users.EditUser data);
+        Task<ApiResponse<Users.BasicUser>> EditUser([Body(BodySerializationMethod.UrlEncoded)] Dictionary<string, string> data);
     }
 
     namespace Users
     {
-        //public record NewUser(
-        //  string first_name,
-        //  string last_name,
-        //  string custom_field_1, // get from config
-        //  string email,
-        //  string login,
-        //  string password
-        //);
-
-
-        public record EditUser(
-            string user_id,
-            string custom_field_1,
-            string custom_field_7
-        );
-
         public record BasicUser(
             int Id,
             string Login,
