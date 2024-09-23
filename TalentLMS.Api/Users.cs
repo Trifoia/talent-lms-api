@@ -47,7 +47,7 @@ namespace TalentLMS.Api
 
         public record EditUser(
             string user_id,
-            string custom_field_1
+            string custom_field_7
         );
 
         public record BasicUser(
