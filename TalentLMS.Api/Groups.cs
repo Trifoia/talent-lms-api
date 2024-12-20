@@ -14,10 +14,23 @@ namespace TalentLMS.Api
 
         [Post("/creategroup")]
         Task<ApiResponse<Groups.CreateBasicGroup>> CreateGroup([Body(BodySerializationMethod.UrlEncoded)] Dictionary<string, string> data);
+        [Get("/addcoursetogroup/course_id:{courseId},group_id:{groupId}")]
+        Task<ApiResponse<Groups.AddCourseToGroupResponse>> AddCourseToGroup(string courseId, string groupId);
+
     }
 
     namespace Groups
     {
+
+        public record AddCourseToGroupResponse(
+        string CourseId,
+        string GroupId,
+        string GroupName);
+
+        public record AddCourseToGroupRequest(
+        string CourseId,
+        string GroupId);
+
         public record CreateBasicGroup(
             int Id,
             string Name,
