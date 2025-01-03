@@ -18,6 +18,10 @@ namespace TalentLMS.Api
         [Get("/addcoursetogroup/course_id:{courseId},group_id:{groupId}")]
         Task<ApiResponse<Groups.AddCourseToGroupResponse>> AddCourseToGroup(string courseId, string groupId);
 
+        [Get("/addusertogroup/user_id:{userId},group_key:{groupKey}")]
+        Task<ApiResponse<Groups.AddUserToGroupResponse>> AddUserToGroup(string userId, string groupKey);
+
+
     }
 
     namespace Groups
@@ -27,6 +31,11 @@ namespace TalentLMS.Api
         string CourseId,
         string GroupId,
         string GroupName);
+
+        public record AddUserToGroupResponse(
+            string UserId,
+            string GroupId,
+            string GroupName);
 
         public record AddCourseToGroupRequest(
         string CourseId,
