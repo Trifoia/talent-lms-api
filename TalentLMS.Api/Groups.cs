@@ -21,6 +21,11 @@ namespace TalentLMS.Api
         [Get("/addusertogroup/user_id:{userId},group_key:{groupKey}")]
         Task<ApiResponse<Groups.AddUserToGroupResponse>> AddUserToGroup(string userId, string groupKey);
 
+        [Get("/removeuserfromgroup/user_id:{userId},group_id:{groupId}")]
+        Task<ApiResponse<Groups.RemoveUserFromGroupResponse>> RemoveUserFromGroup(string userId, string groupId);
+
+
+
 
     }
 
@@ -35,6 +40,10 @@ namespace TalentLMS.Api
         public record AddUserToGroupResponse(
             string UserId,
             string GroupId,
+            string GroupName);
+        public record RemoveUserFromGroupResponse(
+            string UserId, 
+            string GroupId, 
             string GroupName);
 
         public record AddCourseToGroupRequest(
