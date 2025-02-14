@@ -12,7 +12,7 @@ namespace TalentLMS.Api
     public partial interface ITalentApi
     {
         [Get("/users")]
-        Task<ApiResponse<List<Users.BasicUser>>> Users();
+        Task<ApiResponse<List<Users.AllUserRetreivalDto>>> Users();
 
         [Get("/users?id={userId}")]
         Task<ApiResponse<Users.User>> User(string userId);
@@ -30,26 +30,11 @@ namespace TalentLMS.Api
         Task<ApiResponse<UserBranch>> AddUserToBranch(string userId, string branchId);
 
         [Post("/edituser")]
-        Task<ApiResponse<Users.BasicUser>> EditUser([Body(BodySerializationMethod.UrlEncoded)] Users.EditUser data);
+        Task<ApiResponse<Users.BasicUser>> EditUser([Body(BodySerializationMethod.UrlEncoded)] Dictionary<string, string> data);
     }
 
     namespace Users
     {
-        //public record NewUser(
-        //  string first_name,
-        //  string last_name,
-        //  string custom_field_1, // get from config
-        //  string email,
-        //  string login,
-        //  string password
-        //);
-
-
-        public record EditUser(
-            string user_id,
-            string custom_field_7
-        );
-
         public record BasicUser(
             int Id,
             string Login,
@@ -71,6 +56,26 @@ namespace TalentLMS.Api
             string Bio,
             string LoginKey);
 
+        public record AllUserRetreivalDto(
+            string Id,
+            string Login,
+            string First_Name,
+            string Last_Name,
+            string Email,
+            string RestrictEmail,
+            string UserType,
+            string TimeZone,
+            string Language,
+            string Status,
+            DateTime? DeactivationDate,
+            string Level,
+            string Points,
+            DateTime CreatedOn,
+            string Last_Updated,
+            string LastUpdatedTimestamp,
+            string Avatar,
+            string Bio,
+            string LoginKey);
         public record User(
             string Id,
             string Login,
