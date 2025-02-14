@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Refit;
 using TalentLMS.Api.Courses;
@@ -68,9 +69,9 @@ namespace TalentLMS.Api
                 string Role,
                 DateTime EnrolledOn,
                 string EnrolledOnTimestamp,
-                DateTime? CompletedOn,
-                string CompletedOnTimestamp,
-                string CompletionPercentage,
+                [property: JsonPropertyName("completed_on")] string CompletedOn,
+                [property: JsonPropertyName("completed_on_timestamp")] string CompletedOnTimestamp,
+                [property: JsonPropertyName("completion_percentage")] string CompletionPercentage,
                 DateTime? ExpiredOn,
                 string ExpiredOnTimestamp,
                 string TotalTime)
