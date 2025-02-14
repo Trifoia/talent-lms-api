@@ -41,6 +41,7 @@ namespace TalentLMS.Api
             string UserId,
             string GroupId,
             string GroupName);
+
         public record RemoveUserFromGroupResponse(
             string UserId, 
             string GroupId, 
@@ -102,6 +103,7 @@ namespace TalentLMS.Api
                 string Name);
         }
 
+        //The response from Talent is different whether it's a Get or a Create. Convert the Create to a Get
         public static class GroupExtensions
         {
             public static GetBasicGroup ConvertToBasicGroup(CreateBasicGroup createBasicGroup)
