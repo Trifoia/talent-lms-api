@@ -79,8 +79,8 @@ namespace TalentLMS.Api
         public record User(
             string Id,
             string Login,
-            string FirstName,
-            string LastName,
+            string First_Name,
+            string Last_Name,
             string Email,
             string RestrictEmail,
             string UserType,
