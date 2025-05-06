@@ -72,15 +72,15 @@ namespace TalentLMS.Api
             string Points,
             DateTime CreatedOn,
             string Last_Updated,
-            string LastUpdatedTimestamp,
+            string Last_Updated_Timestamp,
             string Avatar,
             string Bio,
             string LoginKey);
         public record User(
             string Id,
             string Login,
-            string FirstName,
-            string LastName,
+            string First_Name,
+            string Last_Name,
             string Email,
             string RestrictEmail,
             string UserType,
