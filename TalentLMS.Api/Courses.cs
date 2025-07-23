@@ -28,6 +28,11 @@ namespace TalentLMS.Api
         [Get("/removeuserfromcourse/user_id:{user_id},course_id:{course_id}")]
         Task<ApiResponse<dynamic>> RemoveUserFromCourse(string user_id, string course_id);
 
+        [Post("/resetuserprogress")]
+        Task<ApiResponse<dynamic>> ResetUserProgress([Body(BodySerializationMethod.UrlEncoded)] Dictionary<string, string> data);
+
+
+
     }
 
     namespace Courses
@@ -38,7 +43,6 @@ namespace TalentLMS.Api
             string course_id,
             string role
             );
-
 
         public record Course(
             string Id,
