@@ -31,6 +31,9 @@ namespace TalentLMS.Api
 
         [Post("/edituser")]
         Task<ApiResponse<Users.BasicUser>> EditUser([Body(BodySerializationMethod.UrlEncoded)] Dictionary<string, string> data);
+
+        [Get("/isuseronline/user_id:{userId}")]
+        Task<ApiResponse<IsUserOnlineResponse>> IsUserOnline(string userId);
     }
 
     namespace Users
@@ -75,7 +78,8 @@ namespace TalentLMS.Api
             string Last_Updated_Timestamp,
             string Avatar,
             string Bio,
-            string LoginKey);
+            string LoginKey,
+            string? Custom_Field_7);
         public record User(
             string Id,
             string Login,
@@ -142,6 +146,10 @@ namespace TalentLMS.Api
                string user_id,
                string branch_id,
                string branch_name
+                );
+
+            public record IsUserOnlineResponse(
+                bool Online
                 );
         }
     }
