@@ -127,13 +127,14 @@ namespace TalentLMS.Api
                 string Name);
 
             public record Certification(
-                string CourseId,
-                string CourseName,
-                string UniqueId,
-                DateTime IssuedDate,
-                DateTime? ExpirationDate,
-                string DownloadUrl,
-                string PublicUrl);
+                string Course_Id,
+                string Course_Name,
+                string Unique_Id,
+                string Issued_Date,
+                long Issued_Date_Timestamp,
+                string Expiration_Date,
+                string Download_Url,
+                string Public_Url);
 
             public record Badge(
                 string Name,
