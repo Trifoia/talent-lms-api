@@ -22,11 +22,11 @@ namespace TalentLMS.Api
             string Message,
             string Timestamp,
             string Unix_Timestamp,
-            string User_Id,
+            int User_Id,
             string User_Username,
             string User_Email,
             string User_Fullname,
-            string Object_Id,
+            int Object_Id,
             string Object_Name,
             string Secondary_Object_Id,
             string Secondary_Object_Name,
@@ -35,9 +35,3 @@ namespace TalentLMS.Api
     }
 }
 
-//Check with Marty about setting the key
-//var response = await _talent_api.GetTimelineFailures(new Dictionary<string, string>
-//                     {
-//                        { "event_type", course_failure },
-//                        { "user_id", "<userId>" }
-//                     });
